@@ -8,7 +8,7 @@ let DATA = getOrCreateData(process.argv[3] || './data.json');
 APP.use(EXPRESS.static('./static'));
 
 APP.get('/api/getqueue', (req, res) => {
-    res.send('this endpoint is not implimented yet');
+    res.send(JSON.stringify(DATA));
 });
 
 APP.post('/api/addtoqueue', (req, res) => {
