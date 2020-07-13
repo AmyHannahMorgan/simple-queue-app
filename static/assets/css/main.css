@@ -7,5 +7,28 @@ body {
 /* classes */
 
 /* IDs */
+#queueAdder {
+    display: grid;
+    grid-template-columns: 100fr auto;
+    grid-template-rows: 100fr;
+
+    margin: 6px;
+}
+
+#queueAdderNumber {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+    height: 2em;
+}
+
+#queueAdderAddButton {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+}
+
+#queueAdderAddButton > img {
+    object-fit: contain;
+    height: 2em;
+}
 
 /* Media */
