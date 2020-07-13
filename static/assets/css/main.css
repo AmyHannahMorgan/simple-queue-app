@@ -1,5 +1,9 @@
 /* tags */
-
+body {
+    margin: 0;
+    max-width: 100%;
+    width: 100vw;
+}
 /* classes */
 
 /* IDs */
