@@ -1,9 +1,10 @@
 const FS = require('fs').promises;
 const EXPRESS = require('express');
+const { write } = require('fs');
 const APP = EXPRESS();
 const PORT = process.argv[2] || 3000
 const PATH = process.argv[3] || './data.json';
-let DATA = getOrCreateData(process.argv[3] || './data.json');
+let DATA = getOrCreateData(PATH);
 
 APP.use(EXPRESS.static('./static'));
 
@@ -15,7 +16,7 @@ APP.post('/api/addtoqueue', (req, res) => {
     if(parseInt(req.params.number)) {
         DATA.push(parseInt(req.params.number));
         res.status(200).send('Number added to queue');
-        //add write to file here
+        writeDataToFile(PATH);
     }
     else {
         res.status(400).send('the supplied paramater is not a number or does not exist');
@@ -28,7 +29,7 @@ APP.delete('/api/removefromqueue', (req, res) => {
         if(DATA.indexOf(number) !== -1) {
             DATA.splice(DATA.indexOf(number), 1);
             res.status(200).send('number was removed successfully');
-            //add write file here
+            writeDataToFile(PATH);
         }
         else {
             res.status(400).send('the supplied number does not exist within the queue');
