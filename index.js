@@ -1,5 +1,6 @@
 const FS = require('fs').promises;
 const EXPRESS = require('express');
+const { fstat } = require('fs');
 const APP = EXPRESS();
 const PORT = process.argv[2] || 3000
 
@@ -18,3 +19,20 @@ APP.delete('/api/removefromqueue', (req, res) => {
 });
 
 APP.listen(PORT);
+
+function getOrCreateData(path) {
+    FS.open(path, 'r+')
+    .then(file => {
+        file.readFile({ encoding: 'utf-8' }).then(fileString => {
+            return JSON.parse(fileString);
+        })
+    })
+    .catch(err => {
+        FS.open(path, 'w+').then(file => {
+            FS.writeFile(file, JSON.stringify([])).then(() => {
+                file.close();
+                return []
+            })
+        })
+    })
+}
