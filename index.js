@@ -2,6 +2,7 @@ const FS = require('fs').promises;
 const EXPRESS = require('express');
 const APP = EXPRESS();
 const PORT = process.argv[2] || 3000
+const PATH = process.argv[3] || './data.json';
 let DATA = getOrCreateData(process.argv[3] || './data.json');
 
 APP.use(EXPRESS.static('./static'));
