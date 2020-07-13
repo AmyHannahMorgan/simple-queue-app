@@ -56,3 +56,13 @@ function getOrCreateData(path) {
         })
     })
 }
+
+function writeDataToFile(path) {
+    FS.open(path, 'w+')
+    .then(file => {
+        file.writeFile(JSON.stringify(DATA))
+        .then(() => {
+            file.close();
+        })
+    })
+}
