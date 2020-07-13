@@ -3,6 +3,7 @@ const EXPRESS = require('express');
 const { fstat } = require('fs');
 const APP = EXPRESS();
 const PORT = process.argv[2] || 3000
+let DATA = getOrCreateData(process.argv[3] || './data.json');
 
 APP.use(EXPRESS.static('./static'));
 
