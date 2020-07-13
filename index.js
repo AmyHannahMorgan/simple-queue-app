@@ -22,7 +22,20 @@ APP.post('/api/addtoqueue', (req, res) => {
 });
 
 APP.delete('/api/removefromqueue', (req, res) => {
-    res.send('this endpoint is not implimented yet');
+    let number = parseInt(req.params.number)
+    if(number) {
+        if(DATA.indexOf(number) !== -1) {
+            DATA.splice(DATA.indexOf(number), 1);
+            res.status(200).send('number was removed successfully');
+            //add write file here
+        }
+        else {
+            res.status(400).send('the supplied number does not exist within the queue');
+        }
+    }
+    else {
+        res.status(400).send('the supplied paramater is not a number or does not exist');
+    }
 });
 
 APP.listen(PORT);
