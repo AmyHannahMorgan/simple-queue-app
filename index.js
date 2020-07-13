@@ -11,7 +11,14 @@ APP.get('/api/getqueue', (req, res) => {
 });
 
 APP.post('/api/addtoqueue', (req, res) => {
-    res.send('this endpoint is not implimented yet');
+    if(parseInt(req.params.number)) {
+        DATA.push(parseInt(req.params.number));
+        res.status(200).send('Number added to queue');
+        //add write to file here
+    }
+    else {
+        res.status(400).send('the supplied paramater is not a number or does not exist');
+    }
 });
 
 APP.delete('/api/removefromqueue', (req, res) => {
