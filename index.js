@@ -13,8 +13,9 @@ APP.get('/api/getqueue', (req, res) => {
 });
 
 APP.post('/api/addtoqueue', (req, res) => {
-    if(parseInt(req.params.number)) {
-        DATA.push(parseInt(req.params.number));
+    console.log(req.query.number)
+    if(parseInt(req.query.number)) {
+        DATA.push(parseInt(req.query.number));
         res.status(200).send('Number added to queue');
         writeDataToFile(PATH);
     }
@@ -24,7 +25,7 @@ APP.post('/api/addtoqueue', (req, res) => {
 });
 
 APP.delete('/api/removefromqueue', (req, res) => {
-    let number = parseInt(req.params.number)
+    let number = parseInt(req.query.number)
     if(number) {
         if(DATA.indexOf(number) !== -1) {
             DATA.splice(DATA.indexOf(number), 1);
