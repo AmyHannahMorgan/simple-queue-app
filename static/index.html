@@ -14,5 +14,11 @@
         <input type="text" pattern="[0-9]{1,}" placeholder="Enter Queue Number..." name="" id="queueAdderNumber">
         <button id="queueAdderAddButton"><img src="./assets/plus-round-line.svg" alt=""></button>
     </div>
+    <template id="queueItemTemplate">
+        <div class="queueItem">
+            <h2>{{queueNumber}}</h2>
+            <button class="queueRemoveButton"><img src="./assets/recycle-bin-line.svg" alt=""></button>
+        </div>
+    </template>
 </body>
 </html>
