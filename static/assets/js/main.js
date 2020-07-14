@@ -1,5 +1,3 @@
-const { json } = require("express");
-
 class QueueItemHandler {
     constructor(elementTemplate, outputElement, queueNumber) {
         this.element = outputElement.appendChild(elementTemplate.cloneNode(true));
