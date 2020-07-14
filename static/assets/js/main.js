@@ -1,3 +1,5 @@
+const { json } = require("express");
+
 class QueueItemHandler {
     constructor(elementTemplate, outputElement, queueNumber) {
         this.element = outputElement.appendChild(elementTemplate.cloneNode(true));
@@ -21,4 +23,13 @@ const QUEUE_ITEM_TEMPLATE = document.querySelector('#queueItemTemplate').content
 const QUEUE_NUMBER_ENTRY = document.querySelector('#queueAdderNumber')
 const QUEUE_NUMBER_SUBMIT = document.querySelector('#queueAdderAddButton');
 const QUEUE_ITEM_HANDLERS = [];
+
+fetch('/api/getqueue')
+.then(res => res.json())
+.then(json => {
+    json.forEach(queueItem => {
+        QUEUE_ITEM_HANDLERS.push(new QueueItemHandler(QUEUE_ITEM_TEMPLATE, QUEUE_HOLDER, queueItem));
+    });
+})
+.catch(err => console.log(err));
 
