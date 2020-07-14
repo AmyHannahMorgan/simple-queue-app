@@ -5,7 +5,31 @@ body {
     width: 100vw;
 }
 /* classes */
+.queueItem {
+    display: grid;
+    grid-template-columns: 100fr auto;
+    grid-template-rows: 100fr;
 
+    margin: 6px;
+}
+
+.queueItem > h2 {
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 1;
+}
+
+.queueItem > .queueRemoveButton {
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 1;
+
+    background: none;
+    border: none;
+}
+
+.queueItem > .queueRemoveButton > img {
+    object-fit: contain;
+    height: 2em;
+}
 /* IDs */
 #queueAdder {
     display: grid;
@@ -19,11 +43,16 @@ body {
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
     height: 2em;
+
+    border: none;
 }
 
 #queueAdderAddButton {
     grid-column: 2 / span 1;
     grid-row: 1 / span 1;
+
+    background: none;
+    border: none;
 }
 
 #queueAdderAddButton > img {
