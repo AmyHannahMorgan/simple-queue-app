@@ -33,3 +33,18 @@ fetch('/api/getqueue')
 })
 .catch(err => console.log(err));
 
+QUEUE_NUMBER_SUBMIT.addEventListener('click', () => {
+    let test = /[0-9]{1,}/i;
+
+    if(test.test(QUEUE_NUMBER_ENTRY.value)) {
+        fetch(`/api/addtoqueue?number=${QUEUE_NUMBER_ENTRY.value}`, { method: 'POST' })
+        .then(res => {
+            QUEUE_ITEM_HANDLERS.push(new QueueItemHandler(QUEUE_ITEM_TEMPLATE, QUEUE_HOLDER, QUEUE_NUMBER_ENTRY.value));
+            QUEUE_NUMBER_ENTRY.value = '';
+        })
+    }
+    else {
+        alert('The entered queue number is not valid');
+    }
+})
+
