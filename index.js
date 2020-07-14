@@ -14,6 +14,7 @@ APP.get('/api/getqueue', (req, res) => {
 
 APP.post('/api/addtoqueue', (req, res) => {
     console.log(req.query.number)
+    console.log(DATA);
     if(parseInt(req.query.number)) {
         DATA.push(parseInt(req.query.number));
         res.status(200).send('Number added to queue');
@@ -47,14 +48,14 @@ function getOrCreateData(path) {
     FS.open(path, 'r+')
     .then(file => {
         file.readFile({ encoding: 'utf-8' }).then(fileString => {
-            return JSON.parse(fileString);
+            DATA = JSON.parse(fileString);
         })
     })
     .catch(err => {
         FS.open(path, 'w+').then(file => {
             FS.writeFile(file, JSON.stringify([])).then(() => {
                 file.close();
-                return []
+                DATA = [];
             })
         })
     })
